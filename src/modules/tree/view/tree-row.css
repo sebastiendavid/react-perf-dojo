@@ -1,13 +1,17 @@
 .TreeRow {
-  padding: 0.5em 0;
   cursor: default;
 }
 
-.TreeRow:nth-child(even) {
-  background-color: #EEEEEE;
+.TreeRow.TreeRow--level0:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .TreeRow__line {
   display: flex;
   align-items: center;
+  padding: 0.5em 0;
+}
+
+.TreeRow__icon.TreeRow__icon--hidden {
+  visibility: hidden;
 }

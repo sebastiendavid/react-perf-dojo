@@ -25,6 +25,7 @@ class Tree extends PureComponent {
             id={item.get('id')}
             label={item.get('label')}
             children={item.get('children')}
+            level={item.get('level')}
           />
         ))}
       </ul>
