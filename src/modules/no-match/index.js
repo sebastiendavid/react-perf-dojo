@@ -1,16 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router';
+import NoMatch from './view';
 
-function NoMatch() {
-  return (
-    <div>
-      <p>404</p>
-      <p>Try:</p>
-      <ul>
-        <li><Link to='/tree'>tree</Link></li>
-      </ul>
-    </div>
-  );
-}
-
-export default NoMatch;
+export const path = '*';
+export const component = NoMatch;
+export default { path, component };

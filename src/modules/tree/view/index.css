@@ -1,0 +1,13 @@
+.TreeView__title {
+  display: flex;
+  align-items: center;
+}
+
+.TreeView__titleLabel {
+  flex: 1;
+  padding: 0 0.2em;
+}
+
+.TreeView__wrapper {
+  font-size: 1.5rem;
+}

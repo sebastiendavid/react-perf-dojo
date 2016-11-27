@@ -7,6 +7,6 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-store.subscribe(() => console.info('store updated'));
+store.subscribe(() => console.debug('action done'));
 
 export default store;

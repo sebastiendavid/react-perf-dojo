@@ -1,0 +1,13 @@
+.TreeRow {
+  padding: 0.5em 0;
+  cursor: default;
+}
+
+.TreeRow:nth-child(even) {
+  background-color: #EEEEEE;
+}
+
+.TreeRow__line {
+  display: flex;
+  align-items: center;
+}
