@@ -1,17 +1,23 @@
-import { fromJS, List } from 'immutable';
+import { List, Map } from 'immutable';
 import { TREE_FILL } from './events';
 
-const initialState = fromJS({
-  tree: []
+const initialState = new Map({
+  tree: new List(),
+  map: new Map(),
+  total: 0
 });
 
-function treeReducer(state = initialState, action) {
-  switch (action.type) {
+function treeReducer(state = initialState, { type, tree, map }) {
+  switch (type) {
     case TREE_FILL:
-      if (List.isList(action.tree)) {
-        return state.set('tree', action.tree)
-      }
-      return state;
+      return state.withMutations(s => {
+        if (List.isList(tree)) {
+          s.set('tree', tree)
+        }
+        if (Map.isMap(map)) {
+          s.set('map', map).set('total', map.size);
+        }
+      });
     default:
       return state
   }
@@ -26,4 +32,8 @@ export function getTreeState(state) {
 
 export function getTree(state) {
   return getTreeState(state).get('tree');
+}
+
+export function getTotal(state) {
+  return getTreeState(state).get('total');
 }

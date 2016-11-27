@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import './index.css';
 import Tree from './tree';
 import { fillTree } from '../actions';
+import { getTotal } from '../reducer';
+
+const mapStateToProps = (state) => ({
+  total: getTotal(state)
+});
 
 const mapDispatchToProps = {
   fillTree
@@ -10,7 +15,8 @@ const mapDispatchToProps = {
 
 class TreeView extends Component {
   static propTypes = {
-    fillTree: PropTypes.func.isRequired
+    fillTree: PropTypes.func.isRequired,
+    total: PropTypes.number.isRequired,
   };
 
   componentDidMount() {
@@ -18,14 +24,21 @@ class TreeView extends Component {
   }
 
   render() {
+    const { total } = this.props;
     console.debug('render TreeView');
     return (
       <section className='Section TreeView'>
-        <h2 className='TreeView__title'>
-          <i className="mdi mdi-file-tree"></i>
-          <span className='TreeView__titleLabel'>Tree</span>
-          <button onClick={this.props.fillTree}>Reset tree</button>
-        </h2>
+        <header className='TreeView__header'>
+          <h2 className='TreeView__title'>
+            <i className="mdi mdi-file-tree"></i>
+            <span className='TreeView__titleLabel'>Tree</span>
+          </h2>
+          <span className='TreeView__total'>{total} items</span>
+          <button className='TreeView__refresh' onClick={this.props.fillTree}>
+            <i className='mdi mdi-refresh'></i>
+            <span>Refresh</span>
+          </button>
+        </header>
         <div className='TreeView__wrapper'>
           <Tree />
         </div>
@@ -34,4 +47,4 @@ class TreeView extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(TreeView);
+export default connect(mapStateToProps, mapDispatchToProps)(TreeView);

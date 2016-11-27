@@ -12,6 +12,18 @@
   padding: 0.5em 0;
 }
 
+.TreeRow__line:hover {
+  background-color: rgba(33, 150, 243, 0.4);
+}
+
 .TreeRow__icon.TreeRow__icon--hidden {
   visibility: hidden;
+}
+
+.TreeRow__label {
+  padding: 0 0.5rem;
+}
+
+.TreeRow__children {
+  margin-left: 2rem;
 }

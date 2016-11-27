@@ -1,11 +1,20 @@
-.TreeView__title {
+.TreeView__header, .TreeView__title, .TreeView__refresh {
   display: flex;
   align-items: center;
 }
 
 .TreeView__titleLabel {
-  flex: 1;
   padding: 0 0.2em;
+}
+
+.TreeView__total {
+  flex: 1;
+  text-align: right;
+  padding: 0 0.5em;
+}
+
+.TreeView__refresh .mdi-refresh {
+  padding-right: 0.2em;
 }
 
 .TreeView__wrapper {
