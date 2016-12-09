@@ -10,11 +10,14 @@ class TreeRow extends PureComponent {
     label: PropTypes.string.isRequired,
     children: ImmutablePropTypes.list,
     level: PropTypes.number.isRequired,
+    path: ImmutablePropTypes.list.isRequired,
+    selected: PropTypes.bool.isRequired,
+    onSelect: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
-    this.state = { collapsed: true, checked: false };
+    this.state = { collapsed: true };
     this.onRowClick = this.onRowClick.bind(this);
     this.onSelectionChange = this.onSelectionChange.bind(this);
   }
@@ -31,13 +34,14 @@ class TreeRow extends PureComponent {
   }
 
   onSelectionChange(checked, event) {
+    const { onSelect, path } = this.props;
     event.stopPropagation();
-    this.setState({ checked });
+    onSelect(path, checked);
   }
 
   render() {
-    const { id, label, children, level } = this.props;
-    const { collapsed, checked } = this.state;
+    const { id, label, children, level, selected, onSelect } = this.props;
+    const { collapsed } = this.state;
     console.debug('render TreeRow');
     const hasChildren = this.hasChildren();
     return (
@@ -48,7 +52,7 @@ class TreeRow extends PureComponent {
             extraClassNames={['TreeRow__icon', `TreeRow__icon--${hasChildren ? 'visible' : 'hidden'}`]}
           />
           <Checkbox
-            checked={checked}
+            checked={selected}
             onChange={this.onSelectionChange}
           />
           <span className='TreeRow__label'>{label}</span>
@@ -62,6 +66,9 @@ class TreeRow extends PureComponent {
                 label={item.get('label')}
                 children={item.get('children')}
                 level={item.get('level')}
+                path={item.get('path')}
+                selected={item.get('selected')}
+                onSelect={onSelect}
               />
             ))}
           </ul>

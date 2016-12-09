@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import './index.css';
 import Tree from './tree';
 import { fillTree } from '../actions';
-import { getTotal } from '../reducer';
+import { selectTotal } from '../reducer';
 
 const mapStateToProps = (state) => ({
-  total: getTotal(state)
+  total: selectTotal(state)
 });
 
 const mapDispatchToProps = {

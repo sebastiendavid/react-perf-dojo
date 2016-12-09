@@ -2,15 +2,21 @@
   "name": "react-perf-dojo",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "devDependencies": {
-    "babel-eslint": "~7.0.0",
-    "eslint": "~3.8.1",
-    "eslint-config-react-app": "~0.3.0",
-    "eslint-plugin-flowtype": "~2.21.0",
-    "eslint-plugin-import": "~2.0.1",
+    "babel-eslint": "~7.1.1",
+    "eslint": "~3.12.0",
+    "eslint-config-react-app": "~0.5.0",
+    "eslint-plugin-flowtype": "~2.29.1",
+    "eslint-plugin-import": "~2.2.0",
     "eslint-plugin-jsx-a11y": "~2.2.3",
-    "eslint-plugin-react": "~6.4.1",
-    "react-scripts": "0.7.0"
+    "eslint-plugin-react": "~6.8.0",
+    "react-scripts": "~0.8.3"
   },
   "dependencies": {
     "chance": "~1.0.4",
@@ -24,13 +30,7 @@
     "react-router": "~3.0.0",
     "redux": "~3.6.0",
     "redux-thunk": "~2.1.0",
-    "uuid": "~3.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "uuid": "~3.0.1"
   },
   "eslintConfig": {
     "extends": "react-app"
