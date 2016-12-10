@@ -1,14 +1,14 @@
-import { combineReducers } from 'redux';
-import * as treeReducer from '../modules/tree/reducer';
+import { combineReducers } from 'redux'
+import * as treeReducer from '../modules/tree/reducer'
 
-const reducers = {};
+const reducers = {}
 
 function add(module) {
   Object.assign(reducers, {
     [module.key]: module.reducer
-  });
+  })
 }
 
-add(treeReducer);
+add(treeReducer)
 
-export default combineReducers(reducers);
+export default combineReducers(reducers)

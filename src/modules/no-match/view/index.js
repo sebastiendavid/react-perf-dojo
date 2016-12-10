@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router';
-import './index.css';
+import React from 'react'
+import { Link } from 'react-router'
+import './index.css'
 
 function NoMatch() {
   return (
@@ -10,7 +10,7 @@ function NoMatch() {
         <Link to='/'>Home</Link>
       </p>
     </div>
-  );
+  )
 }
 
-export default NoMatch;
+export default NoMatch

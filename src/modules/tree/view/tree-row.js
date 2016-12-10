@@ -1,8 +1,8 @@
-import React, { PureComponent, PropTypes } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import './tree-row.css';
-import Collapse from '../../../components/collapse';
-import Checkbox from '../../../components/checkbox';
+import React, { PureComponent, PropTypes } from 'react'
+import ImmutablePropTypes from 'react-immutable-proptypes'
+import './tree-row.css'
+import Collapse from '../../../components/collapse'
+import Checkbox from '../../../components/checkbox'
 
 class TreeRow extends PureComponent {
   static propTypes = {
@@ -13,37 +13,37 @@ class TreeRow extends PureComponent {
     path: ImmutablePropTypes.list.isRequired,
     selected: PropTypes.bool.isRequired,
     onSelect: PropTypes.func.isRequired,
-  };
+  }
 
   constructor(props) {
-    super(props);
-    this.state = { collapsed: true };
-    this.onRowClick = this.onRowClick.bind(this);
-    this.onSelectionChange = this.onSelectionChange.bind(this);
+    super(props)
+    this.state = { collapsed: true }
+    this.onRowClick = this.onRowClick.bind(this)
+    this.onSelectionChange = this.onSelectionChange.bind(this)
   }
 
   hasChildren() {
-    const { children } = this.props;
-    return !!children && !!children.size;
+    const { children } = this.props
+    return !!children && !!children.size
   }
 
   onRowClick(event) {
     if (this.hasChildren()) {
-      this.setState({ collapsed: !this.state.collapsed });
+      this.setState({ collapsed: !this.state.collapsed })
     }
   }
 
   onSelectionChange(checked, event) {
-    const { onSelect, path } = this.props;
-    event.stopPropagation();
-    onSelect(path, checked);
+    const { onSelect, path } = this.props
+    event.stopPropagation()
+    onSelect(path, checked)
   }
 
   render() {
-    const { id, label, children, level, selected, onSelect } = this.props;
-    const { collapsed } = this.state;
-    console.debug('render TreeRow');
-    const hasChildren = this.hasChildren();
+    const { id, label, children, level, selected, onSelect } = this.props
+    const { collapsed } = this.state
+    console.debug('render TreeRow')
+    const hasChildren = this.hasChildren()
     return (
       <li id={`tree-row-${id}`} className={`TreeRow TreeRow--level${level}`}>
         <div className='TreeRow__line' onClick={this.onRowClick}>
@@ -74,8 +74,8 @@ class TreeRow extends PureComponent {
           </ul>
         }
       </li>
-    );
+    )
   }
 }
 
-export default TreeRow;
+export default TreeRow

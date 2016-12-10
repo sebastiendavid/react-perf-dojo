@@ -1,9 +1,9 @@
-import React from 'react';
-import { browserHistory, Router, Route, IndexRedirect } from 'react-router';
-import TreeModule from './modules/tree';
-import NoMatchModule from './modules/no-match';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { browserHistory, Router, Route, IndexRedirect } from 'react-router'
+import TreeModule from './modules/tree'
+import NoMatchModule from './modules/no-match'
+import logo from './logo.svg'
+import './App.css'
 
 function route({ path, component }) {
   return <Route path={path} component={component} />
@@ -24,7 +24,7 @@ function App() {
         </Route>
       </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
