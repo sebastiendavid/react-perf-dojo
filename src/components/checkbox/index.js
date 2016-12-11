@@ -23,9 +23,16 @@ class Checkbox extends PureComponent {
     onChange(!checked, event)
   }
 
+  getIconClass() {
+    const { checked } = this.props;
+    if (checked) return 'mdi-checkbox-marked'
+    else if (checked === null) return 'mdi-checkbox-blank'
+    else return 'mdi-checkbox-blank-outline'
+  }
+
   render() {
-    const { checked, extraClassNames } = this.props
-    const classNames = ['mdi', checked ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline']
+    const { extraClassNames } = this.props
+    const classNames = ['mdi', this.getIconClass()]
     return (
       <i
         className={classNames.concat(extraClassNames).join(' ')}

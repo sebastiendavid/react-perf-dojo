@@ -7,20 +7,67 @@ const initialState = new Map({
   total: 0,
 })
 
+function updateChildren(item, selected) {
+  const children = item.get('children')
+  if (children && children.size) {
+    return children.map(child => {
+      if (child.get('selected') !== selected) {
+        return child
+          .set('selected', selected)
+          .set('children', updateChildren(child, selected))
+      }
+      return child
+    })
+  }
+  return children;
+}
+
+function getRealPath(path) {
+  return ['tree'].concat(path.join('.children.').split('.'))
+}
+
 const eventsMap = {
   [TREE_FILL](state, { tree, map }) {
-    return state.withMutations(s => {
+    return state.withMutations(state => {
       if (List.isList(tree)) {
-        s.set('tree', tree)
+        state.set('tree', tree)
       }
       if (Map.isMap(map)) {
-        s.set('map', map).set('total', map.size)
+        state
+          .set('map', map)
+          .set('total', map.size)
       }
     })
   },
   [TREE_ITEM_SELECT](state, { path, selected }) {
-    const pathToItem = ['tree'].concat(path.toJS().join('.children.').split('.'))
-    return state.setIn(pathToItem, state.getIn(pathToItem).set('selected', selected))
+    const pathToItem = getRealPath(path)
+    const item = state.getIn(pathToItem)
+    return state.withMutations(state => {
+      state.setIn(
+        pathToItem,
+        item
+          .set('selected', selected)
+          .set('children', updateChildren(item, selected))
+      )
+      path
+        .pop()
+        .reduce((list, value, index) => {
+          if (index > 0) {
+            return list.push(list.get(index - 1).push(value));
+          }
+          return list.push(new List([value]))
+        }, new List())
+        .reverse()
+        .forEach(path => {
+          const pathToParent = getRealPath(path)
+          const parent = state.getIn(pathToParent)
+          const children = parent.get('children');
+          let status = null;
+          if (children.every(child => child.get('selected') === true)) status = true
+          else if (children.every(child => child.get('selected') === false)) status = false
+          state.setIn(pathToParent, parent.set('selected', status))
+        })
+    })
   },
 }
 
