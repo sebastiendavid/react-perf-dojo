@@ -11,7 +11,7 @@ class TreeRow extends PureComponent {
     children: ImmutablePropTypes.list,
     level: PropTypes.number.isRequired,
     path: ImmutablePropTypes.list.isRequired,
-    selected: PropTypes.bool.isRequired,
+    selected: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
   }
 
